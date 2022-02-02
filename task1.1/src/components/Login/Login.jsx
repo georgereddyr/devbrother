@@ -1,4 +1,6 @@
 import React from 'react';
+import './Login.css';
+import Input from '../Input/Input.jsx';
 
 export default class Login extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ export default class Login extends React.Component {
     }
   }
 
-  Submit = (e) => {
+  submit = e => {
     e.preventDefault();
     this.setState({ login: '', password: '' })
     console.log('Login: ' + this.state.login + ' Password: ' + this.state.password);
@@ -17,12 +19,12 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <form onSubmit={ this.Submit }>
+      <form onSubmit={ this.submit }>
         <div className='labels'>Login: 
-          <input type="email" value={ this.state.login } onChange={e => this.setState({ login: e.target.value })} />
+          <Input type="email" value={ this.state.login } onChange={e => this.setState({ login: e.target.value })} />
         </div>
         <div className='labels'>Password: 
-          <input type="password" value={ this.state.password } onChange={e => this.setState({ password: e.target.value })} />
+          <Input type="password" value={ this.state.password } onChange={e => this.setState({ password: e.target.value })} />
         </div>
         <input type="submit" value="Log In" className='button'/>
       </form>

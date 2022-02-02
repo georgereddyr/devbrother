@@ -1,10 +1,10 @@
-import Login from './components/Login';
+import Login from './components/Login/Login';
 import './index';
 
 function App() {
   return(
     <div className='app'>
-      <Login login='' password='' />
+      <Login />
     </div>
   )
 }
