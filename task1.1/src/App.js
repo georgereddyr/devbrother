@@ -4,7 +4,7 @@ import './index';
 function App() {
   return(
     <div className='app'>
-      <Login />
+      <Login email = '' password = '' />
     </div>
   )
 }

@@ -5,14 +5,16 @@ export default class Input extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = {value: '', type: '', name: ''};
+    this.state = {value: this.props.value};
   }
 
   onChangeHandler = (e) => {
-    this.setState({ value: e.target.value });
+    this.props.onChange(e);
+    this.setState( { value: e.target.value } );
+    console.log(this.setState.value)
   }
 
   render() {
-    return <input name={ this.props.name } type={ this.props.type } value={ this.state.value } onChange={ this.onChangeHandler } />
+    return <input name='name' type={ this.props.type } value={ this.state.value } {...this.props} onChange={ this.onChangeHandler } />
   }
 } 
