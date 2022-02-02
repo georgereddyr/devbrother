@@ -1,13 +1,12 @@
 import React from 'react';
-import Login from '../../task1/src/components/Login';
+import Login from './components/Login/Login';
 import './App.css';
 
 function App() {
   return(
-    <>
+    <div className='app'>
       <Login />
-    </>
-
+    </div>
   )
 }
 

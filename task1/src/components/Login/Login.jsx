@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import Input from './Input';
-import '../App.css';
+import Input from '../Input/Input';
+import './Login.css';
 
 export default function Submit(props) {
   const [formValue, setFormValue] = useState({email: '', password: ''});
@@ -19,11 +19,14 @@ export default function Submit(props) {
   return (
     <>
       <form onSubmit={submit}>
-        <Input type="email" onChange={handleFormChange} name='email' />
-        <Input type="password" onChange={handleFormChange} name='password'/>
-        <input type="submit" value="Log In"></input>
+        <div className="labels">Email: 
+          <Input type="email" onChange={handleFormChange} name='email' />
+        </div>
+        <div className="labels">Password: 
+          <Input type="password" onChange={handleFormChange} name='password' />
+        </div>
+        <input type="submit" value="Log In" className="button" />
       </form>
-
     </>
   )
 };

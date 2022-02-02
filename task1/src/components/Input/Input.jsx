@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../App.css';
+import './Input.css';
 
 export default function Input(props) {
   const [input, setInput] = useState(''); 
@@ -10,9 +10,5 @@ export default function Input(props) {
     onChange(e.target.value, name);
   }
 
-  return (
-    <div className="form">
-      <input name={name} value={input} onChange={onChangeHandler} type={type}/>
-    </div>
-  )
+  return <input name={name} value={input} onChange={onChangeHandler} type={type}/>
 }
