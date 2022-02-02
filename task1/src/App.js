@@ -1,12 +1,11 @@
 import React from 'react';
+import Login from '../../task1/src/components/Login';
 import './App.css';
-import Input from './components/Input';
-
 
 function App() {
   return(
     <>
-      <Input login='' password=''/>
+      <Login />
     </>
 
   )
