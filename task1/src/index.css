@@ -1,20 +1,17 @@
 #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  height: 100vh; 
   background:rgba(18, 148, 255, 0.459);
   font-size: 20px;
 }
 
-.app {
+/* .app {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 50vh;
   width: 500px;
   border: 2px solid black;
-}
+} */
 
 .labels {
   display: flex;

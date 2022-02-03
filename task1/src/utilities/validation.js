@@ -9,7 +9,7 @@ export function isValid(valid, fieldName, error) {
 
 const validation = {
   login: function (string, fieldName, error) {
-    if (/^[a-zA-Z0-9]+$/.test(string))
+    if (/^[a-zA-Z0-9]+$/.test(string) && string.length > 3)
       return isValid(true, fieldName, '');
     else {
       error = 'You have entered an invalid login';
