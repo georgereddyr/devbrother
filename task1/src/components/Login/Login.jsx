@@ -1,5 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, {useState} from "react";
 import Input from '../Input/Input';
+import validation from "../../utilities/validation";
+import { isValid } from "../../utilities/validation";
 import './Login.css';
 
 export default function Submit(props) {
@@ -7,36 +10,17 @@ export default function Submit(props) {
     login: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
-    passwordError: '',
     passwordLength: '',
-    emailError: ''
+    passwordConfirmation: ''
   });
 
   const [formValidation, setFormValidation] = useState({
-    login: {valid: true, error: ''},
-    email: {valid: true, error: ''},
-    password: {valid: true, error: ''},
-    passwordConfirmation: {valid: true, error: ''},
-    passwordError: {valid: true, error: ''},
-    passwordLength: {valid: true, error: ''},
-    emailError: {valid: true, error: ''},
+    login: {valid: true, error: '', name: ''},
+    isEmail: {valid: true, error: '', name: ''},
+    password: {valid: true, error: '', name: ''},
+    passwordLength: {valid: true, error: '', name: ''},
+    passwordConfirmation: {valid: true, error: '', name: ''}
   })
-
-  const isPasswordValid = (password, passwordConfirmation) => {
-    if (!password || !passwordConfirmation) return false;
-    return password === passwordConfirmation;
-  };
-
-  const passLengthValidation = (value) => {
-    const re = new RegExp(`^(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,32}$`);
-    return re.test(value);
-  };
-
-  const isEmailValid = (value) => {
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return emailRegex.test(value);
-  };
 
   function handleFormChange(value, field) {
     const result = {...formValue};
@@ -47,20 +31,8 @@ export default function Submit(props) {
   function submit(e) {
     e.preventDefault();
 
-    setFormValue({
-      ...formValue,
-      passwordError: isPasswordValid(formValue.password, formValue.passwordConfirmation)
-        ? '' : 'Password does not match',
-      passwordLength: passLengthValidation(formValue.password) ? '' : 'Password is too short',
-      emailError: isEmailValid(formValue.email)
-        ? '' : 'Incorrect email address'
-    });
-
-    if (
-      !isPasswordValid(formValue.password, formValue.passwordConfirmation) ||
-      !isEmailValid(formValue.email) ||
-      !passLengthValidation(formValue.password)
-    ) return;
+    setFormValidation(isValid);
+    console.log(formValidation);
 
     console.log('Login: ' + formValue.login + ' Email: ' + formValue.email + ' Password: ' + formValue.password);
   }
@@ -72,13 +44,13 @@ export default function Submit(props) {
           <Input type="text" onChange={handleFormChange} name='login' />
         </div>
         <div className="labels">Email: 
-          <Input type="email" onChange={handleFormChange} name='email' error={formValue.emailError}/>
+          <Input type="email" onChange={handleFormChange} name='email' />
         </div>
         <div className="labels">Password: 
-          <Input type="password" onChange={handleFormChange} name='password' error={formValue.passwordLength}/>
+          <Input type="password" onChange={handleFormChange} name='password' />
         </div>
         <div className="labels">Confirm password: 
-          <Input type="password" onChange={handleFormChange} name='passwordConfirmation' error={formValue.passwordError}/>
+          <Input type="password" onChange={handleFormChange} name='passwordConfirmation' />
         </div>
         <input type="submit" value="Signup" className="button" />
       </form>
