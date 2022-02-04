@@ -4,15 +4,6 @@
   font-size: 20px;
 }
 
-/* .app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50vh;
-  width: 500px;
-  border: 2px solid black;
-} */
-
 .labels {
   display: flex;
   flex-direction: column;

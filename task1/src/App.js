@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
@@ -7,6 +8,9 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 
 function App() {
+  const [auth, setAuth] = useState(null);
+
+
   return(
     <>
       <Router>

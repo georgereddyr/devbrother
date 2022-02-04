@@ -8,46 +8,48 @@ export function isValid(valid, fieldName, error) {
 }
 
 const validation = {
-  login: function (string, fieldName, error) {
-    if (/^[a-zA-Z0-9]+$/.test(string) && string.length > 3)
+  login: function (value, fieldName) {
+    if (/^[a-zA-Z0-9]+$/.test(value) && value.length > 3)
       return isValid(true, fieldName, '');
     else {
-      error = 'You have entered an invalid login';
+      let error = 'You have entered an invalid login';
       return isValid(false, fieldName, error)
     }
   },
 
-  isEmail: function (string, fieldName, error) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(string))
+  isEmail: function (value, fieldName) {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))
       return isValid(true, fieldName, '');
     else {
-      error = 'You have entered an invalid email address';
+      let error = 'You have entered an invalid email address';
       return isValid(false, fieldName, error);
     }
   },
 
-  password: function (string, fieldName, error) {
-    if (/.*(?=.*\d)(?=.*[A-Z]).*/.test(string))
+  password: function (value, fieldName) {
+    if (/.*(?=.*\d)(?=.*[A-Z]).*/.test(value))
       return isValid(true, fieldName, '')
     else {
-      error = 'You have entered an invalid password';
+      let error = 'You have entered an invalid password';
       return isValid(false, fieldName, error)
     }
   },
 
-  passwordLength: function (string, fieldName, error) {
-    if (string.length < 7 || string.length > 18) {
-      error = 'Password should be 7-18 characters long';
+  passwordLength: function (value, fieldName) {
+    if (value.length < 7 || value.length > 18) {
+      let error = 'Password should be 7-18 characters long';
+      console.log(value);
       return isValid(false, fieldName, error);
+  
     }
     return isValid(true, fieldName, '');
   },
 
-  passwordConfirmation: function (firstPass, secondPass, fieldName, error) {
+  passwordConfirmation: function (firstPass, secondPass, fieldName) {
     if (firstPass === secondPass)
       return isValid(true, fieldName, '');
     else {
-      error = "Password you've entered doesn't match"
+      let error = "Password you've entered doesn't match"
       return isValid(false, fieldName, error)
     }
   }
