@@ -9,25 +9,27 @@
 
 
 form {
-
+  text-align: center;
   height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 10%;
 }
 
-input {
-  height: 20px;
-  width: 200px;
+.error-msg {
+  color: rgb(100, 0, 0);
+  margin: 0 auto;
+  font-size: 11px;
 }
 
 .button {
   cursor: pointer;
   border-radius: 5px;
-  height: 25px;
+  height: 25px !important;
   width: 50%;
-  margin-top: 15px;
+  margin: 25px auto;
 }
 
 .button:hover {

@@ -38,9 +38,7 @@ const validation = {
   passwordLength: function (value, fieldName) {
     if (value.length < 7 || value.length > 18) {
       let error = 'Password should be 7-18 characters long';
-      console.log(value);
       return isValid(false, fieldName, error);
-  
     }
     return isValid(true, fieldName, '');
   },

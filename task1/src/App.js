@@ -8,18 +8,20 @@ import SignupPage from './pages/SignupPage'
 import LoginPage from './pages/LoginPage'
 
 function App() {
-  const [auth, setAuth] = useState(null);
+  const [auth, setAuth] = useState(false);
 
 
   return(
     <>
       <Router>
         <Navbar />
-        <Routes>
-          <Route path='/' exact element={<Home />} />
-          <Route path='/sign-up' element={<SignupPage />} />
-          <Route path='/login' element={<LoginPage />} />
-        </Routes>
+        <div className='container'>
+          <Routes>
+            <Route path='/' exact element={<Home />} />
+            <Route path='/sign-up' element={<SignupPage />} />
+            <Route path='/login' element={<LoginPage />} />
+          </Routes>
+        </div>
       </Router>
     </>
   )

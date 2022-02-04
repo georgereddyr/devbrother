@@ -48,24 +48,30 @@ export default function Signup(props) {
 
   return (
     <>
-      <div className="container">
-        <div className="form">
-          <form onSubmit={submit}>
-            <div className="labels">Login: 
-              <Input type="text" onChange={handleFormChange} name='login' />
-            </div>
-            <div className="labels">Email: 
-              <Input type="email" onChange={handleFormChange} name='email' />
-            </div>
-            <div className="labels">Password: 
-              <Input type="password" onChange={handleFormChange} name='password' />
-            </div>
-            <div className="labels">Confirm password: 
-              <Input type="password" onChange={handleFormChange} name='passwordConfirmation' />
-            </div>
-            <input type="submit" value="Signup" className="button" />
-          </form>
-        </div>
+      <div className="form">
+        <form onSubmit={submit}>
+          <div className="labels">Login: 
+            <Input type="text" onChange={handleFormChange} name='login' 
+              error={<span>{formValidation.login.error}</span>} />
+            <span className="error-msg"> {formValidation.login.error} <br /></span>
+          </div>
+          <div className="labels">Email: 
+            <Input type="email" onChange={handleFormChange} name='email' 
+              error={<span>{formValidation.isEmail.error}</span>} />
+            <span className="error-msg">{formValidation.isEmail.error} <br /></span>
+          </div>
+          <div className="labels">Password: 
+            <Input type="password" onChange={handleFormChange} name='password' 
+              error={<span>{formValidation.password.error}</span>}/>
+            <span className="error-msg">{formValidation.password.error} <br /></span>
+          </div>
+          <div className="labels">Confirm password: 
+            <Input type="password" onChange={handleFormChange} name='passwordConfirmation' 
+              error={<span>{formValidation.passwordConfirmation.error}</span>} />
+            <span className="error-msg">{formValidation.passwordConfirmation.error} <br /></span>
+          </div>
+          <input type="submit" value="Signup" className="button" />
+        </form>
       </div>
     </>
   )
