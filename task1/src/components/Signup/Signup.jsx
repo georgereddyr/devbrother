@@ -3,11 +3,12 @@
 import React, {useState, useEffect} from "react";
 import Input from '../Input/Input';
 import validation from "../../utilities/validation";
-import { isValid } from "../../utilities/validation";
+import Api from "../../utilities/Api";
+import Login from "../Login/Login";
 import './Signup.css';
 
 export default function Signup(props) {
-  const [formValue, setFormValue] = useState({
+  let [formValue, setFormValue] = useState({
     login: '',
     email: '',
     password: '',
@@ -21,6 +22,8 @@ export default function Signup(props) {
     passwordLength: {valid: true, error: '', name: ''},
     passwordConfirmation: {valid: true, error: '', name: ''}
   })
+
+  const [registered, setRegistered] = useState();
 
   function handleFormChange(value, field) {
     const result = {...formValue};
@@ -44,6 +47,12 @@ export default function Signup(props) {
       passwordLength: validation.passwordLength(formValue.password, 'passwordLength'),
       passwordConfirmation: validation.passwordConfirmation(formValue.passwordConfirmation, formValue.password, 'passwordConfirmation')
     });
+
+    if (validation) {
+      // signUp;
+      //.then u're successfully registered
+    }
+
   }
 
   return (
