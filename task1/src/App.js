@@ -6,30 +6,26 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import SignupPage from './pages/SignupPage';
-import LoginPage from './pages/LoginPage';
+import Login from './components/Login/Login';
+import ErrorPage from './pages/ErrorPage'
+import useUser from './utilities/useUser';
+
 
 function App() {
-  const [auth, setAuth] = useState(false);
-  const [currentUser,setCurrentUser] = useState(false);
-
-   //setAuth 
-  function logOut() {
-    setAuth(false);
-    setCurrentUser(false);
-  }
+  const { user, setUser } = useUser();
  
-
 
   return(
     <>
       <Router>
-        <Navbar />
+        <Navbar user={user} setUser={setUser} />
         <div className='container'>
           <Routes>
-            <Route path='/' exact element={<Home currentUser={currentUser}/>}/>
-            { auth && <Route path='/Dashboard' element={<Dashboard/>}/> }
+            <Route path='/' exact element={<Home />}/>
+            {user && <Route path='/dashboard' element={<Dashboard />} />}
             <Route path='/sign-up' element={<SignupPage />} />
-            <Route path='/login' element={<LoginPage setAuth={setAuth}/>} />
+            <Route path='/login' element={<Login setUser={setUser}/>} />
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </div>
       </Router>

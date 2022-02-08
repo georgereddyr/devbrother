@@ -2,7 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-export default function Navbar({auth, logOut}) {
+export default function Navbar(props) {
+  const token = props.token;
+
+  function logOut() {
+    localStorage.clear();
+    props.setToken(null);
+  }
+
   return (
     <>
       <nav className='navbar'>
@@ -14,15 +21,17 @@ export default function Navbar({auth, logOut}) {
             </Link>
           </div>
 
-          {auth ? <>
+          {token ? <>
             <div className='nav-item'>
-              <Link to='/Dashboard'>
+              <Link to='/Dashboard' className='nav-link'>
                 Dashboard
               </Link>
             </div>
 
             <div className='nav-item'>
-              <button onClick={logOut}>Log Out</button>
+              <Link to='/'  className='nav-link' onClick={logOut}>
+                Log Out
+              </Link>
             </div>
           </> : 
           <>

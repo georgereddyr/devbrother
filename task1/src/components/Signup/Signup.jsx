@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import Input from '../Input/Input';
 import validation from "../../utilities/validation";
 import Api from "../../utilities/Api";
@@ -8,6 +9,15 @@ import Login from "../Login/Login";
 import './Signup.css';
 
 export default function Signup(props) {
+  const navigate = useNavigate();
+
+  const initialState = {
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirmation: ''
+ };
+
   let [formValue, setFormValue] = useState({
     login: '',
     email: '',
@@ -23,7 +33,7 @@ export default function Signup(props) {
     passwordConfirmation: {valid: true, error: '', name: ''}
   })
 
-  const [registered, setRegistered] = useState();
+
 
   function handleFormChange(value, field) {
     const result = {...formValue};
@@ -31,14 +41,29 @@ export default function Signup(props) {
     setFormValue(result);
   }
 
+  function resetFormState() {
+    setFormValue(initialState);
+  }
+
   useEffect(() => {
     if (formValue.login) {
       console.log(formValidation);
+      navigate('/login');
     }
+
   }, [formValidation])
+
+  // const arrofUsers = [];
+  // arrofUsers.push()
   
   function submit(e) {
     e.preventDefault();
+
+    function signUp () {
+      const userData = JSON.stringify({ login: formValue.login, password: formValue.password, email: formValue.email });
+      localStorage.setItem(formValue.login, userData);
+      return userData;
+    }
 
     setFormValidation({
       login: validation.login(formValue.login, 'login'),
@@ -48,11 +73,7 @@ export default function Signup(props) {
       passwordConfirmation: validation.passwordConfirmation(formValue.passwordConfirmation, formValue.password, 'passwordConfirmation')
     });
 
-    if (validation) {
-      // signUp;
-      //.then u're successfully registered
-    }
-
+    return signUp();
   }
 
   return (
