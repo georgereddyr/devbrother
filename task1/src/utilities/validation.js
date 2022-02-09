@@ -44,7 +44,7 @@ const validation = {
   },
 
   passwordConfirmation: function (firstPass, secondPass, fieldName) {
-    if (firstPass === secondPass)
+    if (firstPass === secondPass && secondPass !== '')
       return isValid(true, fieldName, '');
     else {
       let error = "Password you've entered doesn't match"

@@ -5,18 +5,10 @@ import { useNavigate } from "react-router-dom";
 import Input from '../Input/Input';
 import validation from "../../utilities/validation";
 import Api from "../../utilities/Api";
-import Login from "../Login/Login";
 import './Signup.css';
 
 export default function Signup(props) {
   const navigate = useNavigate();
-
-  const initialState = {
-    name: '',
-    email: '',
-    password: '',
-    passwordConfirmation: ''
- };
 
   let [formValue, setFormValue] = useState({
     login: '',
@@ -33,38 +25,21 @@ export default function Signup(props) {
     passwordConfirmation: {valid: true, error: '', name: ''}
   })
 
-
-
   function handleFormChange(value, field) {
     const result = {...formValue};
     result[field] = value;
     setFormValue(result);
   }
 
-  function resetFormState() {
-    setFormValue(initialState);
-  }
+  
 
   useEffect(() => {
-    if (formValue.login) {
-      console.log(formValidation);
-      navigate('/login');
-    }
-
+    let errors = Object.values(formValidation).filter(error => error.error).length;
+    console.log(errors)
+    
   }, [formValidation])
 
-  // const arrofUsers = [];
-  // arrofUsers.push()
-  
-  function submit(e) {
-    e.preventDefault();
-
-    function signUp () {
-      const userData = JSON.stringify({ login: formValue.login, password: formValue.password, email: formValue.email });
-      localStorage.setItem(formValue.login, userData);
-      return userData;
-    }
-
+  function validateData() {
     setFormValidation({
       login: validation.login(formValue.login, 'login'),
       isEmail: validation.isEmail(formValue.email, 'email'),
@@ -72,8 +47,14 @@ export default function Signup(props) {
       passwordLength: validation.passwordLength(formValue.password, 'passwordLength'),
       passwordConfirmation: validation.passwordConfirmation(formValue.passwordConfirmation, formValue.password, 'passwordConfirmation')
     });
+  }
+  
+  function submit(e) {
+    e.preventDefault();
 
-    return signUp();
+    validateData()
+    Api.signUp(formValue)
+    
   }
 
   return (

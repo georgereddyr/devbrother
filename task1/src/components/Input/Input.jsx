@@ -11,7 +11,7 @@ export default function Input(props) {
     placeholder,
     className,
     value,
-    onChange 
+    onChange = () => {}
   } = props;
     
   function onChangeHandler(e) {
@@ -19,5 +19,12 @@ export default function Input(props) {
     onChange(e.target.value, name);
   }
 
-  return <input name={name} value={input} onChange={onChangeHandler} type={type}/>
+  return <input name={name}
+          type={type} 
+          required={required}
+          placeholder={placeholder}
+          className={className}
+          onChange={onChangeHandler} 
+          value={input?.value}
+        />
 }

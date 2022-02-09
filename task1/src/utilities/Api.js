@@ -1,5 +1,6 @@
+
 const Api = {
-  signUp: (user) => {
+  signUp: user => {
     return fakeWait(3000).then(() => {
       let usersArr = JSON.parse(localStorage.getItem("Users"));
       console.log(usersArr);
@@ -12,21 +13,23 @@ const Api = {
         );
 
         if (!result) {
-          let users = JSON.stringify(usersArr);
           usersArr.push(user);
+          let users = JSON.stringify(usersArr);
           localStorage.setItem("Users", users);
           return usersArr;
-        } else return "user already exists";
+        } else if(result) console.log('Username or email has already been taken')
 
       } else {
         usersArr = [user];
         let users = JSON.stringify(usersArr);
-        localStorage.setItem("Users", users)
+        localStorage.setItem("Users", users);
+        console.log('Registered successfuly');
+        return usersArr;
       }
     })
   },
 
-  login: (user) => {
+  login: user => {
     return fakeWait(3000).then(() => {
       let usersArr = JSON.parse(localStorage.getItem("Users"));
       console.log(usersArr);
@@ -34,24 +37,26 @@ const Api = {
       if (usersArr) {
         let result = usersArr.find(el =>
           user.name === el.name &&
-          user.email === el.email &&
           user.password === el.password
         );
 
         if (!result) {
+          console.log('!result')
           return ({
             info: "user doesn't exist",
             currentUser: ''
           });
         } else {
+          console.log('logged in')
           return ({
-            info: 'registered successfuly',
+            info: 'logged in',
             currentUser: result
           });
         }
       } else {
+        console.log('else?')
         return ({
-          info: 'user doesnt exist',
+          info: "user doesn't exist",
           currentUser: ''
         })
       }

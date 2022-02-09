@@ -1,13 +1,14 @@
 import React from 'react';
 import './Button.css';
-import { Link } from 'react-router-dom';
 
+export default function Button(props) {
+  const {
+    className,
 
-export const Button = ({
-  children, type, onClick }) => {
-  return (
-    <Link to='/sign-up' className='btn-mobile'>
-      <button className='btn' onClick={onClick} type={type}> {children} </button>
-    </Link>
-  );
+  } = props;
+
+  function onClick(e) {
+    e.preventDefault();
+  }
+  return <button className={className} onClick={onClick} type={props.type}></button>
 };

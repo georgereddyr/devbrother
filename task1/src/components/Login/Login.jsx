@@ -1,47 +1,47 @@
 /* eslint-disable no-unused-vars */
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
 import Input from "../Input/Input";
+import Api from "../../utilities/Api";
 import '../Signup/Signup'
-export default function Login ({ setUser }) {
+export default function Login (props) {
   const navigate = useNavigate();
-  const [login, setLogin] = useState();
-  const [password, setPassword] = useState();
+  let [formValue, setFormValue] = useState({
+    login: '',
+    password: ''
+  });
 
+  function handleFormChange(value, field) {
+    const result = {...formValue};
+    result[field] = value;
+    setFormValue(result);
+  }
  
   
-  async function submit(e) {
+  function submit(e) {
     e.preventDefault();
 
-    function logIn() {
-      const values = JSON.parse(localStorage.getItem(password))
-      if (values && password === values.password) {
-        console.log('nice');
-      }
-    }
-
-    return logIn();
+    Api.login(formValue);
+    
+  
+   
+   
   }
 
 
-  return(
+  return( 
     <>
       <div className="form">
         <form onSubmit={submit}>
           <div className="labels">Login: 
-              <Input type="text" onChange={() => setLogin} name='login' />
+              <Input type="text" onChange={handleFormChange} name='login' />
           </div>
           <div className="labels">Password: 
-              <Input type="password" onChange={() => setPassword} name='login' />
+              <Input type="password" onChange={handleFormChange} name='login' />
           </div>
           <input type="submit" value="Sign In" className="button" />
         </form>
       </div>
     </>
     )
-};
-
-Login.propTypes = {
-  setUser: PropTypes.func.isRequired
 };

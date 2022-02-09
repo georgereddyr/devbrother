@@ -5,9 +5,10 @@ export default function FormBuilder(props) {
 
   const fields = props.fields;
 
-  const listOfThings = fields.map(function(field) {
+  const listOfThings = fields.map(field => {
     const fieldObject = {
       text: Input
+      
     }
 
     const Component = fieldObject[field.type];
@@ -22,5 +23,6 @@ export default function FormBuilder(props) {
     />
   });
 
-  return {listOfThings};
+  return listOfThings
 }
+  
