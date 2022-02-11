@@ -7,8 +7,8 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Signup from './pages/SignupPage';
 import Login from './components/Login/Login';
+import Todo from './pages/Todo'
 import ErrorPage from './pages/ErrorPage'
-
 import Api from './utilities/Api';
 
 
@@ -26,6 +26,7 @@ function App() {
             { <Route path='/dashboard' element={<Dashboard />} />}
             <Route path='/sign-up' element={<Signup />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/todo' element={<Todo />} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         </div>

@@ -10,5 +10,5 @@ export default function Button(props) {
   function onClick(e) {
     e.preventDefault();
   }
-  return <button className={className} onClick={onClick} type={props.type}></button>
+  return <button className={className} onClick={onClick}></button>
 };

@@ -41,6 +41,13 @@ export default function Navbar({auth, logOut}) {
                 Log in
               </Link>
             </div>
+
+            <div className='nav-item'>
+              <Link to='/todo' className='nav-link'>
+                Todo List
+              </Link>
+            </div>
+
           </>}
         </div>
       </nav>

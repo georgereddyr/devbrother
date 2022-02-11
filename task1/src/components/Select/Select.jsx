@@ -9,8 +9,8 @@ export default function Select(props) {
     options
   } = props;
 
-  const option = options.map(option => {
-    return <option value={option.value}></option>
+  const option = options.map((option, key)  => {
+    return <option value={option.value} key={key}> {option.value} </option>
   });
 
   return <select name={name}
@@ -22,4 +22,4 @@ export default function Select(props) {
             {option}
         </select>
   
-}
+} 

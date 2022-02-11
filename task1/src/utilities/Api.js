@@ -54,13 +54,30 @@ const Api = {
           });
         }
       } else {
-        console.log('else?')
+        console.log('no such user')
         return ({
           info: "user doesn't exist",
           currentUser: ''
         })
       }
     })
+  },
+
+  addTodo: tasks => {
+   
+
+    // tasksArr.push(task);
+    // let tasks = JSON.stringify(tasksArr);
+    // localStorage.setItem("Tasks", tasks);
+    
+    
+    
+    
+    localStorage.setItem('Tasks', JSON.stringify(tasks))
+
+    JSON.parse(localStorage.getItem('Tasks'))
+    console.log('Task added');
+    // return tasksArr;
   }
 }
 
@@ -70,4 +87,4 @@ function fakeWait(ms) {
   });
 }
 
-export default Api;
+export default Api; 

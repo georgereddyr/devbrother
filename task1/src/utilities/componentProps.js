@@ -1,20 +1,20 @@
 const componentProps = [
-  // {
-  //   name: 'select option',
-  //   type: 'select',
-  //   required: true,
-  //   placeholder: 'Select',
-  //   options: [
-  //     { value: 'option1', label: 'Option 1' },
-  //     { value: 'option2', label: 'Option 2' }
-  //   ],
-  // },
+  {
+    name: 'select option',
+    type: 'select',
+    required: true,
+    placeholder: 'Select',
+    options: [
+      { value: 'option1', label: 'Option 1' },
+      { value: 'option2', label: 'Option 2' }
+    ],
+  },
 
   {
-    name: 'code',
+    name: 'Login',
     type: 'text',
     required: true,
-    placeholder: 'Confirmation Code',
+    placeholder: 'Login',
     validations: {
       onChange: [
         {
@@ -23,14 +23,30 @@ const componentProps = [
         },
       ],
     },
+    id: 'login'
   },
 
   {
-    name: 'newPassword',
-    type: 'text',
-    hideInput: true,
+    name: 'Email',
+    type: 'email',
     required: true,
-    placeholder: 'New password',
+    placeholder: 'Email',
+    validations: {
+      onChange: [
+        {
+          name: 'minLength',
+          minLength: 6,
+        },
+      ],
+    },
+    id: 'email'
+  },
+
+  {
+    name: 'password',
+    type: 'password',
+    required: true,
+    placeholder: 'Password',
     validations: {
       onChange: [
         {
@@ -42,13 +58,23 @@ const componentProps = [
         },
       ],
     },
+    id: 'password'
   },
   {
     name: 'passwordConfirmation',
-    type: 'text',
+    type: 'password',
     required: true,
     placeholder: 'Confirm Password',
+    id: 'passwordConfirmation'
   },
+
+  {
+    name: 'checkbox',
+    type: 'checkbox',
+    value: '??',
+    required: true,
+    id: 'chk'
+  }
 ];
 
 export default componentProps;
